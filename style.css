@@ -4,64 +4,243 @@
     padding: 0;
 }
 
+:root {
+    --background: #fafafa;
+    --surface: #ffffff;
+    --text: #18181b;
+    --secondary: #71717a;
+    --muted: #a1a1aa;
+    --border: #e4e4e7;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background: #f5f5f5;
-    color: #222;
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background: var(--background);
+    color: var(--text);
 }
 
 header {
-    padding: 60px 20px;
-    text-align: center;
-    background: #ffffff;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 72px 32px 64px;
 }
 
 header h1 {
-    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+    margin-bottom: 36px;
 }
 
 header p {
-    color: #666;
+    max-width: 600px;
+
+    font-size: 46px;
+    line-height: 1.1;
+    font-weight: 500;
+    letter-spacing: -2px;
+
+    color: var(--text);
 }
 
 main {
-    max-width: 1100px;
+    max-width: 1180px;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: 0 32px 100px;
 }
 
-h2 {
-    margin-bottom: 25px;
+main > section > h2 {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+
+    color: var(--secondary);
+
+    margin-bottom: 70px;
+}
+
+.certificate-category {
+    margin-bottom: 80px;
+}
+
+.certificate-category > h3 {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+
+    color: var(--text);
+
+    margin-bottom: 28px;
 }
 
 .certificates {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 32px;
+}
+
+
+.certificate-category > h3::after {
+    content: "";
+
+    flex: 1;
+
+    height: 1px;
+
+    background: var(--border);
 }
 
 .certificate {
-    background: #ffffff;
-    padding: 25px;
-    border-radius: 10px;
+    min-width: 0;
 }
 
-.certificate h3 {
-    margin-bottom: 10px;
+.certificate-image {
+    overflow: hidden;
+
+    aspect-ratio: 16 / 11;
+
+    background: #f1f1f1;
+
+    margin-bottom: 20px;
+}
+
+.certificate img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: contain;
+
+    transition: transform 0.4s ease;
+}
+
+.certificate h4 {
+    font-size: 16px;
+    line-height: 1.45;
+    font-weight: 500;
+
+    letter-spacing: -0.2px;
+
+    margin-bottom: 8px;
 }
 
 .certificate p {
-    color: #666;
+    font-size: 14px;
+    color: var(--secondary);
+
     margin-bottom: 5px;
 }
 
 .certificate span {
     display: block;
-    color: #888;
-    margin-bottom: 20px;
+
+    font-size: 13px;
+    color: var(--muted);
+
+    margin-bottom: 16px;
 }
 
 .certificate a {
+    display: inline-block;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    color: var(--text);
+
     text-decoration: none;
-    font-weight: bold;
+
+    border-bottom: 1px solid var(--text);
+
+    padding-bottom: 2px;
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.certificate a:hover {
+    color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+
+footer {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 40px 32px 60px;
+    border-top: 1px solid var(--border);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 13px;
+    color: var(--secondary);
+}
+
+.footer-content strong {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text);
+}
+
+@media (max-width: 900px) {
+    .certificates {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    header p {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        padding: 48px 20px 50px;
+    }
+
+    header p {
+        font-size: 34px;
+        letter-spacing: -1.2px;
+    }
+
+    main {
+        padding: 0 20px 60px;
+    }
+
+    main > section > h2 {
+        margin-bottom: 50px;
+    }
+
+    .certificates {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+
+    .certificate-category {
+        margin-bottom: 60px;
+    }
+
+    footer {
+        padding: 32px 20px 48px;
+    }
 }
